@@ -1,5 +1,6 @@
 import socket
 import sys
+import time
 
 available_ports = []
 
@@ -29,9 +30,12 @@ if __name__ == "__main__":
         print("Example: python script.py 0000.000.000.000")
         sys.exit(1)
     print("Starting the script...")
+    init_time = time.time()
     init(ip_address)
     print(f"Available ports on {ip_address}: {available_ports}")
     print("Script finished running.")
+    end_time = time.time()
+    print(f"Total time taken: {end_time - init_time} seconds")
     print("You can now use the script to check port availability.")
     print("Note: This script will attempt to connect to every port from 0 to 65535.")
     print("This may take a while depending on the number of ports and network conditions.")
