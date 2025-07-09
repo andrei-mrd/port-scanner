@@ -1,6 +1,14 @@
 import socket
 import sys
 import time
+import ipaddress
+
+def is_valid_ip(ip):
+    try:
+        ipaddress.ip_address(ip)
+        return True
+    except ValueError:
+        return False
 
 available_ports = []
 
@@ -24,7 +32,11 @@ def init(ip_address):
 
 if __name__ == "__main__":
     if len(sys.argv) == 2 :
-        ip_address = sys.argv[1]
+        if is_valid_ip(sys.argv[1]):
+            ip_address = sys.argv[1]
+        else:
+            print("Invalid IP address format. Please provide a valid IP address.")
+            sys.exit(1)
     else:
         print("No IP address provided. Please provide an IP address as a command line argument.")
         print("Example: python script.py 0000.000.000.000")
